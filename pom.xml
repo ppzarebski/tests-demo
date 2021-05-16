@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.ppzarebski</groupId>
+    <artifactId>tests-demo</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <java.version>11</java.version>
+
+        <allure.cmd.download.url>
+            https://github.com/allure-framework/allure2/releases/download
+        </allure.cmd.download.url>
+        <allure.junit.version>2.13.9</allure.junit.version>
+        <allure.report.version>2.7.0</allure.report.version>
+        <aspectj.version>1.9.6</aspectj.version>
+        <jackson.version>2.12.3</jackson.version>
+        <junit.version>5.7.1</junit.version>
+        <restassured.version>4.3.3</restassured.version>
+        <slf4jlogger.version>1.7.30</slf4jlogger.version>
+    </properties>
+
+    <modules>
+        <module>tests-demo-commons</module>
+    </modules>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>io.qameta.allure</groupId>
+                    <artifactId>allure-maven</artifactId>
+                    <version>${allure.version}</version>
+                    <configuration>
+                        <reportVersion>${allure.report.version}</reportVersion>
+                        <allureDownloadUrl>
+                            ${allure.cmd.download.url}/${allure.report.version}/allure-${allure.report.version}.zip
+                        </allureDownloadUrl>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.0.0-M5</version>
+                    <configuration>
+                        <argLine>
+                            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                        </argLine>
+                        <useSystemClassLoader>true</useSystemClassLoader>
+                        <forkNode implementation="org.apache.maven.plugin.surefire.extensions.SurefireForkNodeFactory"/>
+                        <properties>
+                            <property>
+                                <name>listener</name>
+                                <value>io.qameta.allure.junit5.AllureJunit5</value>
+                            </property>
+                        </properties>
+                        <systemProperties>
+                            <property>
+                                <name>junit.jupiter.extensions.autodetection.enabled</name>
+                                <value>true</value>
+                            </property>
+                        </systemProperties>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.aspectj</groupId>
+                            <artifactId>aspectjweaver</artifactId>
+                            <version>${aspectj.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>
