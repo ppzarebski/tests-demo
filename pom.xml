@@ -12,6 +12,7 @@
     <properties>
         <java.version>11</java.version>
 
+        <allure.version>2.9</allure.version>
         <allure.cmd.download.url>
             https://github.com/allure-framework/allure2/releases/download
         </allure.cmd.download.url>
