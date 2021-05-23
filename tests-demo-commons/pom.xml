@@ -65,6 +65,12 @@
             <artifactId>javafaker</artifactId>
             <version>${javafaker.version}</version>
         </dependency>
+        
+        <dependency>
+            <groupId>com.typesafe</groupId>
+            <artifactId>config</artifactId>
+            <version>${typesafeconfig.version}</version>
+        </dependency>
     </dependencies>
 
 </project>
