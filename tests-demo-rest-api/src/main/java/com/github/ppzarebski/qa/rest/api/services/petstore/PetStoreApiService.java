@@ -21,7 +21,7 @@ public class PetStoreApiService {
   private static final String PETS = "/pet";
   private static final String PET = "/pet/{id}";
   private static final String PET_IMAGE = "/pet/{id}/uploadImage";
-  private static final String PETS_BY_STATUS = "/pet/findByStatus";
+  public static final String PETS_BY_STATUS = "/pet/findByStatus";
 
   public static Pet addPet(Pet petInput) {
     return Raw.addPet(petInput).expectStatusCode(HttpStatus.SC_OK).asTypeReference(new TypeReference<>() {
