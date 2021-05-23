@@ -18,6 +18,7 @@
         <allure.junit.version>2.13.9</allure.junit.version>
         <allure.report.version>2.7.0</allure.report.version>
         <aspectj.version>1.9.6</aspectj.version>
+        <google.truth.version>1.1.2</google.truth.version>
         <jackson.version>2.12.3</jackson.version>
         <junit.version>5.7.1</junit.version>
         <restassured.version>4.3.3</restassured.version>

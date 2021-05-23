@@ -47,6 +47,13 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4jlogger.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.google.truth</groupId>
+            <artifactId>truth</artifactId>
+            <version>${google.truth.version}</version>
+        </dependency>
+
     </dependencies>
 
 </project>
