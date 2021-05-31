@@ -13,7 +13,6 @@ class BaseRunner extends App {
   val projectRootDir = gatlingConf.getParent.getParent
 
   val mavenSourcesDir = projectRootDir.resolve("scala")
-  System.out.println(mavenSourcesDir)
   val mavenResourcesDir = projectRootDir.resolve("resources")
   val mavenTargetDir = projectRootDir.resolve("target")
   val mavenBinariesDir = mavenTargetDir.resolve("classes")

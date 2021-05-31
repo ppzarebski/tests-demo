@@ -4,6 +4,9 @@ import com.github.ppzarebski.qa.performance.tests.petstore.FindPetByStatusSimula
 
 object Runner extends BaseRunner {
 
+  /**
+    * / paste simulation class name in method below to run the simulation with your IDE
+    */
   runSimulation(classOf[FindPetByStatusSimulation].getName)
 
 }

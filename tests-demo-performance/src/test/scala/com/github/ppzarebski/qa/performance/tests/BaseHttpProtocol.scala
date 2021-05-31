@@ -14,4 +14,19 @@ object BaseHttpProtocol {
       .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:16.0) Gecko/20100101 Firefox/16.0")
   }
 
+  def wsProtocol(baseUri: String) = {
+    val uriWithoutProtocol = getUriWithoutProtocol(baseUri)
+    http.baseUrl("http://" + uriWithoutProtocol)
+      .acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
+      .doNotTrackHeader("1")
+      .acceptLanguageHeader("en-US,en;q=0.5")
+      .acceptEncodingHeader("gzip, deflate")
+      .userAgentHeader("Gatling2")
+      .wsBaseUrl("wss://" + uriWithoutProtocol)
+  }
+
+  def getUriWithoutProtocol(uri: String) = {
+    uri.substring(uri.indexOf("://") + 3)
+  }
+
 }
