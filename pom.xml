@@ -30,8 +30,10 @@
         <junit.version>5.7.1</junit.version>
         <restassured.version>4.3.3</restassured.version>
         <scala.lib.version>2.13.6</scala.lib.version>
+        <selenide.version>5.21.0</selenide.version>
         <slf4jlogger.version>1.7.30</slf4jlogger.version>
         <typesafeconfig.version>1.4.1</typesafeconfig.version>
+        <webdrivermanager.version>4.4.3</webdrivermanager.version>
         <websocket.lib.version>1.5.2</websocket.lib.version>
     </properties>
 
@@ -40,6 +42,7 @@
         <module>tests-demo-rest-api</module>
         <module>tests-demo-performance</module>
         <module>tests-demo-websocket</module>
+        <module>tests-demo-web</module>
     </modules>
 
 
