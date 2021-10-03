@@ -1,2 +1,2 @@
 # tests-demo
-Demonstration repository.
+Tests demonstration repository.
