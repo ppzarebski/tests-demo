@@ -32,6 +32,8 @@ public class EchoWebSocketTest extends BaseSuite {
     _given("opened connection to web socket");
     websocket = EchoWebSocketClient.getInstance();
     websocket.openConnection();
+    waitForWelcomeMessage();
+    websocket.clearMessages();
 
     _when("message is sent");
     var message = RandomGenerator.faker.chuckNorris().fact();
@@ -52,6 +54,8 @@ public class EchoWebSocketTest extends BaseSuite {
     _given("opened connection to web socket");
     websocket = EchoWebSocketClient.getInstance();
     websocket.openConnection();
+    waitForWelcomeMessage();
+    websocket.clearMessages();
 
     for (var i = times; i > 0; i--) {
       _when("message is sent");
@@ -65,5 +69,13 @@ public class EchoWebSocketTest extends BaseSuite {
         assertThat(messages.stream().anyMatch(e -> e.equals(message))).isTrue();
       });
     }
+  }
+
+  private static void waitForWelcomeMessage() {
+    await().pollInterval(100, TimeUnit.MILLISECONDS).timeout(5, TimeUnit.SECONDS).untilAsserted(() -> {
+      var messages = websocket.getMessages();
+      assertThat(messages).isNotEmpty();
+      assertThat(messages.get(0)).contains("Request served");
+    });
   }
 }
