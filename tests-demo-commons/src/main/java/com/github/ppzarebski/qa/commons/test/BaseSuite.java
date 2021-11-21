@@ -1,10 +1,12 @@
 package com.github.ppzarebski.qa.commons.test;
 
+import com.github.ppzarebski.qa.commons.logger.LogHandler;
 import com.github.ppzarebski.qa.commons.logger.TestCaseFilter;
 import com.github.ppzarebski.qa.commons.model.TestStep;
 import io.qameta.allure.Allure;
 import io.qameta.allure.model.Status;
 import io.qameta.allure.model.StepResult;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
@@ -13,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@ExtendWith(LogHandler.class)
 @ExtendWith(TestCaseFilter.class)
 public class BaseSuite {
 
@@ -20,13 +23,20 @@ public class BaseSuite {
   private String currentStepId;
 
   @BeforeEach
-  void beforeEach() {
+  void beforeEachTest() {
     Allure.getLifecycle().updateTestCase(tc -> {
       var issues = tc.getLinks().stream()
             .map(e -> String.format("[%s]", e.getName()))
             .collect(Collectors.joining());
       tc.setName(issues.concat(" " + tc.getName()));
     });
+  }
+
+  @AfterEach
+  void afterEachTest() {
+    if (currentStepId != null) {
+      Allure.getLifecycle().stopStep(currentStepId);
+    }
   }
 
   protected void _given(String infoLog, Object... params) {
