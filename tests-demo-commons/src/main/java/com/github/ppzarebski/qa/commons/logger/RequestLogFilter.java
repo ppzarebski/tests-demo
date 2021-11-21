@@ -24,7 +24,7 @@ public class RequestLogFilter implements Filter {
 
   private static String formatRequest(FilterableRequestSpecification requestSpec) {
     var request = new StringBuilder();
-    request.append(String.format("Method: %s url: %s\n", requestSpec.getMethod(), requestSpec.getURI()));
+    request.append(String.format("%s %s\n", requestSpec.getMethod(), requestSpec.getURI()));
     requestSpec.getHeaders().forEach(h -> request.append(String.format("%s: %s\n", h.getName(), h.getValue())));
     if (requestSpec.getBody() != null) {
       request.append(String.format("Body:\n%s\n", requestSpec.getBody().toString()));

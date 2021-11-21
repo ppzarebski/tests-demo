@@ -28,10 +28,10 @@ public class ResponseLogFilter implements Filter {
 
   private static String formatResponse(Response response) {
     var result = new StringBuilder();
-    result.append(String.format("HTTP Status code: %s", response.getStatusCode()));
-    response.getHeaders().forEach(e -> result.append(String.format("%s: %s", e.getName(), e.getValue())));
+    result.append(String.format("HTTP Status code: %s\r\n", response.getStatusCode()));
+    response.getHeaders().forEach(e -> result.append(String.format("%s: %s\r\n", e.getName(), e.getValue())));
     result.append(formatBody(response));
-    result.append("\n");
+    result.append("\r\n");
     return result.toString();
   }
 
