@@ -20,6 +20,7 @@ public class BasePage {
   protected WebDriverWait driverWait;
 
   public BasePage(WebDriver driver) {
+    log.info("Setting driver...");
     this.driver = driver;
     driverWait = new WebDriverWait(driver, TIMEOUT, POLLING);
     PageFactory.initElements(new AjaxElementLocatorFactory(driver, TIMEOUT), this);
