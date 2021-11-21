@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 import static com.google.common.truth.Truth.assertThat;
 import static org.awaitility.Awaitility.await;
 
-@DisplayName("websocket.org test")
+@DisplayName("websocket client test")
 public class EchoWebSocketTest extends BaseSuite {
 
   private static EchoWebSocketClient websocket;
