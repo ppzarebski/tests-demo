@@ -22,6 +22,11 @@
             <groupId>com.github.ppzarebski</groupId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <artifactId>tests-demo-websocket</artifactId>
+            <groupId>com.github.ppzarebski</groupId>
+            <version>${project.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>io.gatling.highcharts</groupId>
