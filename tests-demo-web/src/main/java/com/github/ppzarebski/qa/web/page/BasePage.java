@@ -19,14 +19,14 @@ public class BasePage {
   protected WebDriver driver;
   protected WebDriverWait driverWait;
 
-  BasePage(WebDriver driver) {
+  public BasePage(WebDriver driver) {
     this.driver = driver;
     driverWait = new WebDriverWait(driver, TIMEOUT, POLLING);
     PageFactory.initElements(new AjaxElementLocatorFactory(driver, TIMEOUT), this);
     log.info("Driver set up.");
   }
 
-  protected void waitForElementToAppear(WebElement webElement) {
+  public void waitForElementToAppear(WebElement webElement) {
     driverWait.until(ExpectedConditions.visibilityOf(webElement));
     log.info("Element {} found.", webElement.getTagName());
   }
